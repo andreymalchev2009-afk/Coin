@@ -1,6 +1,7 @@
 import tkinter as tk
 
 def click(symbol):
+    """Обработка нажатий кнопок."""
     if symbol == "=":
         try:
             result = str(eval(entry.get()))
@@ -14,14 +15,17 @@ def click(symbol):
     else:
         entry.insert(tk.END, symbol)
 
+# Создаём главное окно
 root = tk.Tk()
 root.title("Калькулятор")
 root.geometry("260x340")
 root.resizable(False, False)
 
+# Поле ввода
 entry = tk.Entry(root, font=("Arial", 20), justify="right")
 entry.grid(row=0, column=0, columnspan=4, padx=10, pady=10, ipady=10)
 
+# Кнопки
 buttons = [
     "7", "8", "9", "/",
     "4", "5", "6", "*",
@@ -34,7 +38,11 @@ row = 1
 col = 0
 for b in buttons:
     tk.Button(
-        root, text=b, width=5, height=2, font=("Arial", 16),
+        root,
+        text=b,
+        width=5,
+        height=2,
+        font=("Arial", 16),
         command=lambda x=b: click(x)
     ).grid(row=row, column=col, padx=5, pady=5)
     col += 1
@@ -43,3 +51,4 @@ for b in buttons:
         row += 1
 
 root.mainloop()
+
